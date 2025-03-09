@@ -1,5 +1,7 @@
 """
+Módulo de autenticação de faces.
 
+Este módulo permite autenticar imagens de rostos com base em embeddings gerados anteriormente.
 """
 
 import cv2
@@ -11,6 +13,15 @@ from keras.api.applications.mobilenet_v3 import preprocess_input
 from sklearn.metrics.pairwise import cosine_similarity
 
 def authenticate_face(embedding_path: str) -> None:
+    """
+    Autentica imagens de rostos com base em embeddings gerados anteriormente.
+
+    Args:
+        embedding_path (str): Caminho para o arquivo de embedding.
+
+    Returns:
+        None
+    """
     # Carregar o modelo de detecção de face
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
@@ -53,7 +64,8 @@ def authenticate_face(embedding_path: str) -> None:
             face = extract_face(frame)
             if face is not None:
                 similarity = calculate_similarity(face)
-                if similarity > 0.67:
+                print(f"Similaridade: {similarity}")
+                if similarity > 0.65:
                     authenticated = True
                     break
             cv2.imshow("Face Detection", frame)
@@ -62,7 +74,7 @@ def authenticate_face(embedding_path: str) -> None:
         else:
             break
 
-        if time.time() - start_time > 7:
+        if time.time() - start_time > 10:
             break
 
     cap.release()

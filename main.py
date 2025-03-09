@@ -1,14 +1,26 @@
 """
+Módulo principal do programa.
+
+Este módulo oferece uma interface de linha de comando para capturar imagens de rostos e autenticar imagens de rostos com base em embeddings gerados anteriormente.
+
+Funcionalidades:
+- Capturar imagens de rostos e gerar embeddings para os rostos capturados.
+- Autenticar imagens de rostos com base em embeddings gerados anteriormente.
+
+Dependências:
+- src.capture_faces: Módulo para capturar imagens de rostos e gerar embeddings.
+- src.face_auth: Módulo para autenticar imagens de rostos com base em embeddings.
 """
 
 from src import capture_face
 from src import authenticate_face
 
 def main():
-
+    """
+    Função principal do programa.
+    """
     while True:
-        print("BEM VINDO!!!")
-        print("Escolha uma opção:")
+        print("\nEscolha uma opção:")
         choice = input("'c' - Capturar imagem, 'a' - Autenticar imagem ou 'q' - Sair: ").lower()
         
         match choice:

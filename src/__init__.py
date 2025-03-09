@@ -1,5 +1,7 @@
 """
+Módulo de inicialização do projeto.
 """
+
 from src import capture_faces
 from src import face_auth
 
